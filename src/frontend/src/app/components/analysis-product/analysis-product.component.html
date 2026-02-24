@@ -1,0 +1,68 @@
+<div class="analysis-product-container">
+
+  <!-- Photo Upload Section -->
+  <div class="upload-section">
+    <label class="upload-label">Photo</label>
+    <!-- <div
+      class="upload-dropzone"
+      [class.has-image]="imagePreview()"
+      (dragover)="onDragOver($event)"
+      (dragleave)="onDragLeave($event)"
+      (drop)="onDrop($event)"
+    > -->
+    <div
+      class="upload-dropzone"
+      [class.has-image]="imagePreview()"
+    >
+    @if (imagePreview()){
+      <img
+        [src]="imagePreview()"
+        alt="Preview"
+        class="image-preview"
+      />
+    }
+
+    @if(!imagePreview()){
+      <div class="upload-placeholder">
+        <span class="upload-icon">📷</span>
+        <p class="upload-text">Click to upload</p>
+        <p class="upload-hint">PNG, JPG, WEBP — up to 10 MB</p>
+      </div>
+    }
+      <input
+        type="file"
+        accept="image/png, image/jpeg, image/webp"
+        class="file-input"
+        (change)="onFileSelected($event)"
+        #fileinput
+      />
+    </div>
+    @if (imagePreview()){
+        <button class="remove-btn" (click)="removeImage()" > Remove Photo </button>
+    }
+  </div>
+
+  <!-- Allergens Input Section -->
+  <div class="allergens-section">
+    <label for="allergens" class="upload-label">Allergens</label>
+    <input
+      id="allergens"
+      type="text"
+      class="allergens-input"
+      placeholder="For example: chicken, wheat, soy..."
+      [(ngModel)]="allergens"
+    />
+    <p class="allergens-hint">
+      Enter known allergens separated by commas
+    </p>
+  </div>
+
+  <!-- Submit Button -->
+  <button
+    class="submit-btn"
+    [disabled]="!imagePreview"
+    (click)="onSubmit()"
+  >
+    Analyze Composition
+  </button>
+</div>

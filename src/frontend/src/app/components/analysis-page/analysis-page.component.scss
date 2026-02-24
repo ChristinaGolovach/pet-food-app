@@ -1,0 +1,15 @@
+.analysis-page-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  height: 100vh;
+
+    .analysis-product-section {
+    flex: 0 0 400px;
+  }
+
+  .analysis-report-section {
+    flex: 1;
+  }
+
+}

@@ -25,6 +25,11 @@ public class AnalysisController : ControllerBase
             return BadRequest("A photo is required.");
         }
 
+        if (string.IsNullOrWhiteSpace(request.Allergens))
+        {
+			return BadRequest("User preferences are required.");
+        }
+
         using var stream = request.Photo.OpenReadStream();
         var extractedText = await _ocrService.ExtractTextAsync(stream);
         var result = await _analysisService.AnalyzeIngredientsAsync(extractedText);

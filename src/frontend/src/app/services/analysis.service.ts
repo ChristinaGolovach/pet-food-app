@@ -12,9 +12,13 @@ export class AnalysisService {
 
   constructor(private http: HttpClient) {}
 
-  analyzePhoto(photo: File): Observable<AnalysisResult> {
+  analyze(photo: File, allergens: string): Observable<AnalysisResult> {
     const formData = new FormData();
+    
     formData.append('photo', photo);
+    formData.append('allergens', allergens);
+
     return this.http.post<AnalysisResult>(this.apiUrl, formData);
   }
 }
+  
