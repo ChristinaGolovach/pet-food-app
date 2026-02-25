@@ -1,6 +1,6 @@
-<div class="analysis-page-conainer">
+<div class="analysis-page-container">
     <div class="analysis-product-section">
-        <app-analysis-product></app-analysis-product>
+        <app-analysis-product (analyzeSubmitEvent)="analyze($event)"></app-analysis-product>
     </div>
     <div class="analysis-report-section">
         <app-analysis-report></app-analysis-report>

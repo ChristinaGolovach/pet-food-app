@@ -1,6 +1,5 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { AnalysisService } from '../../services/analysis.service';
 
 @Component({
   selector: 'app-analysis-product',
@@ -10,11 +9,13 @@ import { AnalysisService } from '../../services/analysis.service';
   styleUrl: './analysis-product.component.scss'
 })
 export class AnalysisProductComponent {
-  imagePreview = signal<string | null>(null);
-  allergens: string = '';
-  private analysisService = inject(AnalysisService);
+  @Output() analyzeSubmitEvent = new EventEmitter<{ file: File; allergens: string }>();
 
   private selectedFile: File | null = null;
+
+  imagePreview = signal<string | null>(null);
+  allergens: string = '';
+
 
   onFileSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
@@ -29,9 +30,7 @@ export class AnalysisProductComponent {
   }
 
   onSubmit(): void {
-    this.analysisService.analyze(this.selectedFile!, this.allergens).subscribe(result => {
-      console.log('Analysis result:', result);
-    });
+      this.analyzeSubmitEvent.emit({ file: this.selectedFile!, allergens: this.allergens });
   }
 
   private previewFile(file: File): void {

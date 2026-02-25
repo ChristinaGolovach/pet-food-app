@@ -25,7 +25,7 @@ public class AnalysisController : ControllerBase
             return BadRequest("A photo is required.");
         }
 
-        if (string.IsNullOrWhiteSpace(request.Allergens))
+        if (request.Allergens is null || request.Allergens.Length == 0)
         {
 			return BadRequest("User preferences are required.");
         }
