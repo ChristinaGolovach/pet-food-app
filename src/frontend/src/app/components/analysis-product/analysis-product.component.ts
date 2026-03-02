@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
+import { Component, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -9,7 +9,8 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './analysis-product.component.scss'
 })
 export class AnalysisProductComponent {
-  @Output() analyzeSubmitEvent = new EventEmitter<{ file: File; allergens: string }>();
+  analyzeSubmitEvent = output<{ file: File; allergens: string }>();
+  photoRemoved = output<void>();
 
   private selectedFile: File | null = null;
 
@@ -27,6 +28,7 @@ export class AnalysisProductComponent {
   removeImage(): void {
     this.selectedFile = null;
     this.imagePreview.set(null);
+    this.photoRemoved.emit();
   }
 
   onSubmit(): void {

@@ -18,7 +18,7 @@ public class AnalysisController : ControllerBase
     }
 
     [HttpPost]
-    public async Task<ActionResult<AnalysisResult>> Analyze([FromForm] AnalysisRequest request)
+    public async Task<ActionResult<AnalysisResult>> Analyze([FromForm] AnalysisRequest request, CancellationToken cancellationToken)
     {
         if (request.Photo is null || request.Photo.Length == 0)
         {
@@ -31,8 +31,8 @@ public class AnalysisController : ControllerBase
         }
 
         using var stream = request.Photo.OpenReadStream();
-        var extractedText = await _ocrService.ExtractTextAsync(stream);
-        var result = await _analysisService.AnalyzeIngredientsAsync(extractedText);
+        var extractedText = await _ocrService.ExtractTextAsync(stream, cancellationToken);
+        var result = await _analysisService.AnalyzeIngredientsAsync(extractedText, request.Allergens, cancellationToken);
 
         return Ok(result);
     }

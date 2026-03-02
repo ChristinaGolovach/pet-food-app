@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
+import { AnalysisResult } from '../../models/analysis-result.model';
 
 @Component({
   selector: 'app-analysis-report',
@@ -8,5 +9,6 @@ import { Component } from '@angular/core';
   styleUrl: './analysis-report.component.scss'
 })
 export class AnalysisReportComponent {
-  // TODO: Implement analysis report display logic
+  analysisResult = input<AnalysisResult | undefined>(undefined);
+
 }

@@ -1,1 +1,29 @@
-<p>analysis-report works!</p>
+@if (analysisResult()) {
+  <div class="report-container">
+    <h2>Analysis Report</h2>
+
+    <div class="section">
+      <h3>Ingredients</h3>
+      <ul>
+        @for (ingredient of analysisResult()!.ingredients; track ingredient) {
+          <li>{{ ingredient }}</li>
+        }
+      </ul>
+    </div>
+
+    @if (analysisResult()!.allergens?.length) {
+      <div class="section allergen-warnings">
+        <h3>⚠️ Allergen Warnings</h3>
+        <ul>
+          @for (allergen of analysisResult()!.allergens; track allergen) {
+            <li class="warning">{{ allergen }}</li>
+          }
+        </ul>
+      </div>
+    }
+  </div>
+} @else {
+  <div class="no-report">
+    <p>Submit a product image to see the analysis report.</p>
+  </div>
+}

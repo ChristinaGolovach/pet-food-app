@@ -1,6 +1,12 @@
+using Azure.Identity;
 using PetFoodAnalyzer.Api.Services;
 
 var builder = WebApplication.CreateBuilder(args);
+
+var keyBuilder = builder.Configuration["KeyVault:Uri"]
+    ?? throw new InvalidOperationException("Key Vault URI is not configured.");
+
+builder.Configuration.AddAzureKeyVault(new Uri(keyBuilder), new DefaultAzureCredential());
 
 // Add services to the container.
 builder.Services.AddControllers();

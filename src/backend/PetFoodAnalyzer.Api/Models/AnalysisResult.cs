@@ -2,10 +2,9 @@ namespace PetFoodAnalyzer.Api.Models;
 
 public class AnalysisResult
 {
-    public bool Success { get; set; }
-    public string RawText { get; set; }
     public List<string> Ingredients { get; set; } = new();
-    public string OverallRating { get; set; }
-    public List<string> Warnings { get; set; } = new();
-    public string Summary { get; set; }
+    public int IngredientCount { get; set; }
+	public List<string> Allergens { get; set; } = new();
+    public int AllergenCount { get; set; }
+    public double AllergenPercentage { get; set; }
 }

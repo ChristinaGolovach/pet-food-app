@@ -4,5 +4,5 @@ namespace PetFoodAnalyzer.Api.Services;
 
 public interface IIngredientAnalysisService
 {
-    Task<AnalysisResult> AnalyzeIngredientsAsync(string ingredientText);
+    Task<AnalysisResult> AnalyzeIngredientsAsync(string text, string[] allergens, CancellationToken cancellationToken);
 }
