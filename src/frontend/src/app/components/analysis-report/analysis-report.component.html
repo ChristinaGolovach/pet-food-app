@@ -6,21 +6,21 @@
       <h3>Ingredients</h3>
       <ul>
         @for (ingredient of analysisResult()!.ingredients; track ingredient) {
-          <li>{{ ingredient }}</li>
+          <li [class.allergen]="ingredient.isAllergen">{{ ingredient.name }}</li>
         }
       </ul>
     </div>
 
     @if (analysisResult()!.allergens?.length) {
       <div class="section allergen-warnings">
-        <h3>⚠️ Allergen Warnings</h3>
-        <ul>
-          @for (allergen of analysisResult()!.allergens; track allergen) {
-            <li class="warning">{{ allergen }}</li>
-          }
-        </ul>
+        <h3>⚠️ Percentage of allergens: {{ analysisResult()!.allergenPercentage }}%</h3>
       </div>
     }
+  </div>
+} @else if (loading()) {
+  <div class="spinner-container">
+    <div class="spinner"></div>
+    <p>Analyzing image, please wait...</p>
   </div>
 } @else {
   <div class="no-report">

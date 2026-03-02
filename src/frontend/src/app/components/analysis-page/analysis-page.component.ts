@@ -18,17 +18,21 @@ export class AnalysisPageComponent {
 
   private analysisService = inject(AnalysisService);
   analysisResult = signal<AnalysisResult | undefined>(undefined);
+  loading = signal<boolean>(false);
 
   analyze(event: { file: File; allergens: string }): void {
     const { file, allergens } = event;
     const allergenList= allergens.split(',');
 
+    this.loading.set(true);
     this.analysisService.analyze(file, allergenList).subscribe(result => {
       this.analysisResult.set(result);
+      this.loading.set(false);
     });
   }
 
   onPhotoRemoved(): void {
     this.analysisResult.set(undefined);
+    this.loading.set(false);
   }
 }

@@ -7,17 +7,18 @@
         and a list of allergens to watch for.
 
         Your task:
-        1. Extract ONLY the ingredients list from the raw text, ignoring all other label content.
-        2. From those ingredients, identify which ones match or contain any of the provided allergens.
-        3. Count the total number of ingredients (ingredientCount) and the number of allergens (allergenCount) found.
-        4. Calculate allergenPercentage as (allergenCount / ingredientCount) * 100. Round the value to two decimal places following the rules of mathematics..
-        5. Return ONLY a valid JSON object — no markdown, no explanation — in this exact schema:
+        1. Extract ONLY the ingredients list from the raw text. Do not skip additional information
+           about an ingredient — it may be listed in parentheses after the ingredient name.
+           Ignore all other label content (brand names, weight, instructions, etc.).
+        2. For each ingredient, set "isAllergen" to true if it matches or contains any of the
+           provided allergens, otherwise set it to false.
+        3. Populate "allergens" with the names of ingredients where "isAllergen" is true.
+        4. Return ONLY a valid JSON object — no markdown, no explanation — in this exact schema:
         {
-          "ingredients": ["string"],
-          "allergens": ["string"],
-          "ingredientCount": number,
-          "allergenCount": number,
-          "allergenPercentage": number
+          "ingredients": [
+            { "name": "string", "isAllergen": false }
+          ],
+          "allergens": ["string"]
         }
         """;
 	}

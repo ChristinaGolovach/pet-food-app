@@ -51,7 +51,7 @@ public class IngredientAnalysisService : IIngredientAnalysisService
 
 		var json = response?.Value.Content[0].Text;
 
-		var result =  JsonSerializer.Deserialize<AnalysisResult>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
+		var result = JsonSerializer.Deserialize<AnalysisResult>(json, new JsonSerializerOptions { PropertyNameCaseInsensitive = true })
 			?? throw new InvalidOperationException("Failed to parse analysis result from OpenAI response.");
 
 		return result;

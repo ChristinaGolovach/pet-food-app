@@ -2,9 +2,11 @@ namespace PetFoodAnalyzer.Api.Models;
 
 public class AnalysisResult
 {
-    public List<string> Ingredients { get; set; } = new();
-    public int IngredientCount { get; set; }
-	public List<string> Allergens { get; set; } = new();
-    public int AllergenCount { get; set; }
-    public double AllergenPercentage { get; set; }
+    public List<Ingredient> Ingredients { get; set; } = new();
+    public List<string> Allergens { get; set; } = new();
+    public int IngredientCount => Ingredients.Count;
+    public int AllergenCount => Allergens.Count;
+    public double AllergenPercentage => IngredientCount == 0
+        ? 0
+        : Math.Round((double)AllergenCount / IngredientCount * 100, 2);
 }

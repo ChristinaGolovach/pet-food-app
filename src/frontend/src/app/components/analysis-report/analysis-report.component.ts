@@ -10,5 +10,5 @@ import { AnalysisResult } from '../../models/analysis-result.model';
 })
 export class AnalysisReportComponent {
   analysisResult = input<AnalysisResult | undefined>(undefined);
-
+  loading = input<boolean>(false);
 }

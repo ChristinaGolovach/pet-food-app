@@ -1,5 +1,7 @@
+import { Ingredient } from "./ingredient.model";
+
 export interface AnalysisResult {
-  ingredients: string[];
+  ingredients: Ingredient[];
   ingredientCount: number;
   allergens: string[];
   allergenCount: number;

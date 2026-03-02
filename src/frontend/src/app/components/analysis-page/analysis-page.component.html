@@ -3,7 +3,7 @@
         <app-analysis-product (analyzeSubmitEvent)="analyze($event)" (photoRemoved)="onPhotoRemoved()"></app-analysis-product>
     </div>
     <div class="analysis-report-section">
-        <app-analysis-report [analysisResult]="analysisResult()"></app-analysis-report>
+        <app-analysis-report [analysisResult]="analysisResult()" [loading]="loading()"></app-analysis-report>
     </div>
 </div>
 
