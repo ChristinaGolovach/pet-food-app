@@ -25,6 +25,10 @@ builder.Services.AddCors(options =>
         policy.WithOrigins("http://localhost:4200")
               .AllowAnyHeader()
               .AllowAnyMethod();
+
+        policy.WithOrigins("https://red-water-07921b90f.1.azurestaticapps.net")
+	        .AllowAnyHeader()
+	        .AllowAnyMethod();
     });
 });
 

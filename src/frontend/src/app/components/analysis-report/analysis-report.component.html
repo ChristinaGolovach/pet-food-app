@@ -4,7 +4,7 @@
 
     <div class="section">
       <h3>Ingredients</h3>
-      <ul>
+      <ul class="ingredients-list">
         @for (ingredient of analysisResult()!.ingredients; track ingredient) {
           <li [class.allergen]="ingredient.isAllergen">{{ ingredient.name }}</li>
         }
